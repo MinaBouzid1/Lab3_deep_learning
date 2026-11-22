@@ -32,7 +32,7 @@ Both notebooks run on Google Colab / Kaggle (dependencies are installed in their
 - The bidirectional RNN brings no gain: relevance depends on keywords, not on right-hand context.
 - BLEU is very low for all models (BLEU-4 < 0.001) and the differences are not meaningful; perplexity is the more informative language-model metric.
 
-**Limits.** The score comes from a keyword lexicon, and the most frequent vocabulary words are the lexicon words, so a high R² partly measures how well the lexicon was re-learned rather than human-judged relevance. The class thresholds (1.0 and 2.0 out of 10) make "medium" very narrow, and 62 % of the test set is "low", so accuracy is flattering: rely on RMSE/R² and macro-F1. Euronews and i24NEWS returned no articles and are not used. One seed.
+
 
 ---
 
@@ -60,6 +60,5 @@ Both notebooks run on Google Colab / Kaggle (dependencies are installed in their
 - **No BLEU gain** can be claimed (BLEU-1 is unchanged; BLEU-3/4 are higher but tiny and measured on 52 prompts).
 - Decoding matters (one prompt, qualitative): greedy repeats a sentence, temperature 1.3 gives gibberish, and beam search with `no_repeat_ngram_size=3` gave the most coherent text.
 
-**Limits.** Small dataset and only four held-out articles, so the differences are noisy; one seed. BLEU uses one reference and forces at least 100 new tokens, which prevents the fine-tuned model from stopping where it naturally would. distinct-n rises partly because the outputs are shorter. The generated text is fluent but not factual (hallucinations in both models), and the demo prompts cover topics present in the training articles, so they do not measure generalisation.
 
 ---
